@@ -2,6 +2,8 @@ package com.bridgelab.addressbook.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +46,7 @@ public class Controller {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<PersonDTO> addPerson(@RequestBody PersonDTO personDTO) {
+	public ResponseEntity<PersonDTO> addPerson(@Valid @RequestBody PersonDTO personDTO) {
 		Person person = convertor.dtoToEntity(personDTO);
 		Person savedPerson = personService.savePerson(person);
 		PersonDTO persondto = convertor.entityToDTO(savedPerson);
@@ -52,7 +54,7 @@ public class Controller {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<PersonDTO> updatePerson(@PathVariable("id") int id, @RequestBody PersonDTO personDto) {
+	public ResponseEntity<PersonDTO> updatePerson(@PathVariable("id") int id, @Valid @RequestBody PersonDTO personDto) {
 		Person person = convertor.dtoToEntity(personDto);
 		Person updatedPerson = personService.updatePerson(id, person);
 		PersonDTO persondto = convertor.entityToDTO(updatedPerson);

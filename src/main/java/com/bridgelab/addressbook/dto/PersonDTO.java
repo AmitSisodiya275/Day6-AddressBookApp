@@ -21,8 +21,6 @@ public class PersonDTO {
 	@NotEmpty(message = "City connot be Empty.")
 	private String city;
 
-	@NotEmpty
-	@Pattern(regexp = "^[0-9]{10}$", message = "Enter proper mobile number.")
 	private long mobileNo;
 
 }
