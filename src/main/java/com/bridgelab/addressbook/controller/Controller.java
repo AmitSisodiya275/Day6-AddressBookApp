@@ -39,10 +39,24 @@ public class Controller {
 	}
 
 	@GetMapping("/get/{eId}")
-	public ResponseEntity<PersonDTO> gePersonById(@PathVariable("eId") int eId) {
+	public ResponseEntity<PersonDTO> getPersonById(@PathVariable("eId") int eId) {
 		Person person = personService.getPersonById(eId);
 		PersonDTO personDTO = convertor.entityToDTO(person);
 		return new ResponseEntity<PersonDTO>(personDTO, HttpStatus.OK);
+	}
+
+	@GetMapping("/get/name/{name}")
+	public ResponseEntity<List<PersonDTO>> getPersonByName(@PathVariable("name") String name) {
+		List<Person> personList = personService.getPersonByName(name);
+		List<PersonDTO> personDtoList = convertor.entityToDTO(personList);
+		return new ResponseEntity<List<PersonDTO>>(personDtoList, HttpStatus.OK);
+	}
+
+	@GetMapping("/get/city/{city}")
+	public ResponseEntity<List<PersonDTO>> getPersonByCity(@PathVariable("city") String city) {
+		List<Person> personList = personService.getPersonByCity(city);
+		List<PersonDTO> personDtoList = convertor.entityToDTO(personList);
+		return new ResponseEntity<List<PersonDTO>>(personDtoList, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")

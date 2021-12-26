@@ -15,4 +15,8 @@ public interface IPersonService {
 	Person updatePerson(int id, Person person);
 	
 	void deletePerson(int id);
+	
+	List<Person> getPersonByName(String name);
+	
+	List<Person> getPersonByCity(String city);
 }

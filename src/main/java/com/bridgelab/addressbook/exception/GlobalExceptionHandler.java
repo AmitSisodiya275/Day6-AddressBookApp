@@ -20,4 +20,10 @@ public class GlobalExceptionHandler {
 				.collect(Collectors.toList());
 		return new ResponseEntity<List<String>>(errorList, HttpStatus.NOT_ACCEPTABLE);
 	}
+
+	@ExceptionHandler(AddressBookException.class)
+	public ResponseEntity<String> handleAddressBookException(AddressBookException e) {
+		String errorMessage = e.getMessage();
+		return new ResponseEntity<String>(errorMessage, HttpStatus.BAD_REQUEST);
+	}
 }
